@@ -300,7 +300,7 @@ sequenceDiagram
 - All route handlers live in `main.py`; the repository does not separate routers, service orchestration, or dependency modules beyond `crud.py` and `auth.py`.
 - `LoginToken` stores only `id` and `user_id`; token expiration or rotation metadata is not modeled.
 - Application startup calls `Base.metadata.create_all(bind=engine)` even though Alembic migration scaffolding and revision files are also present, creating two schema-management paths.
-- No repository-local tests or checked-in CI workflow definitions were identified during the repository inventory used to generate this document.
+- No `tests/` directory, `test_*.py` files, or `.github/workflows/` directory is present in the repository tree that generated this document.
 
 ## Change Log
 
