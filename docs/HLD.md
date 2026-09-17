@@ -125,7 +125,7 @@ flowchart TB
 ## Data Protection
 
 - **In transit**
-  - Browser-to-backend protection is expected to rely on HTTP or HTTPS at deployment time; transport termination details are not determined from repository.
+  - Deployed environments should require HTTPS for browser-to-backend traffic because the application uses OAuth and bearer-token cookies; transport termination details are not determined from repository.
   - Backend-to-Google token exchange uses HTTPS through the Google OpenID Connect metadata endpoint.
 - **At rest**
   - User, project, login-token, and join-table records are persisted in the configured relational database.
@@ -152,6 +152,7 @@ flowchart TB
   - `GET /projects`, `GET /projects/{uuid}`, and `GET /users` are unauthenticated in the current code.
 - **Session and secret posture**
   - Session middleware uses `SESSION_SECRET`, which defaults to the literal string `secret` when the environment variable is unset.
+  - Deployed environments should override the default `SESSION_SECRET` value because the checked-in fallback is not suitable for protecting production session integrity.
   - Secret rotation, secret storage backend, and cookie hardening flags are not determined from repository.
 - **Dependency posture**
   - The repository imports FastAPI, SQLAlchemy, Authlib, Starlette, Pydantic, and python-dotenv, but no dependency manifest is checked in to pin versions.
