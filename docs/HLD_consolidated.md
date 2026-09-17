@@ -80,8 +80,8 @@ flowchart TB
    - The frontend requests `GET /projects` to render the catalog and `GET /projects/{id}` to render project details.
    - The backend returns serialized project and user data from the relational store.
 3. **Authenticated project creation and maintenance**
-   - The frontend loads the user directory, validates project form state locally, and submits project create or update requests to the backend.
-   - The backend authenticates the request from the configured token cookie or header, resolves referenced users, persists the project and membership rows, and returns the resulting payload.
+   - The frontend React project form loads the user directory, validates project form state locally, and submits project create or update requests to the backend.
+   - The backend authenticates the request from the configured token cookie or header, resolves referenced users, persists the project and membership rows in the relational database, and returns the resulting payload.
    - For update and delete operations, the backend also verifies that the authenticated user is associated with the target project before mutating data.
 
 ## Data Flow
