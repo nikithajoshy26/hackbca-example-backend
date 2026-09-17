@@ -292,7 +292,7 @@ sequenceDiagram
   - logout redirects.
 - `SESSION_SECRET` defaults to `secret` when unset and is passed to `SessionMiddleware`.
 - `TOKEN_NAME` defaults to `hackbca_token` when unset and names both the API key cookie and the API key header.
-- Production deployments should replace the default `SESSION_SECRET` with a strong value and harden the application login token cookie settings because `main.py` does not pass explicit `Secure`, `HttpOnly`, or `SameSite` arguments when setting that cookie.
+- Production deployments should replace the default `SESSION_SECRET` with a strong value and verify or explicitly configure hardened settings for the application login token cookie because `main.py` does not pass explicit `Secure`, `HttpOnly`, or `SameSite` arguments when setting that cookie.
 - Environment-specific deployment descriptors are not determined from repository.
 
 ## Known Limitations / Technical Debt
