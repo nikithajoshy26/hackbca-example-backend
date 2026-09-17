@@ -115,7 +115,7 @@
 | --- | --- | --- | --- | --- |
 | `get_db()` | `main.py` | Provides a request-scoped SQLAlchemy session dependency | Input: none; Output: yielded `SessionLocal()` session | Opens and closes a database session per request |
 | `auth()` | `main.py` | Authenticates a caller from cookie or header token | Inputs: cookie token, header token, database session; Output: `User` or `401` | Reads `login_tokens` through `crud.get_user_by_token()` |
-| `login_via_google()` | `main.py` | Starts the Google OAuth flow | Inputs: request, optional redirect string; Output: redirect response from Authlib | Stores redirect target in server-side session |
+| `login_via_google()` | `main.py` | Starts the Google OAuth flow | Inputs: request, optional redirect string; Output: redirect response from Authlib | Stores redirect target in the session cookie |
 | `auth_via_google()` | `main.py` | Processes the OAuth callback and creates application login state | Inputs: request, database session; Output: redirect response | Creates users when absent, creates login token row, sets login cookie |
 | `create_project()` | `main.py` | Accepts an authenticated project create request | Inputs: `ProjectIn`, database session, authenticated user; Output: `Project` | Persists project row and join-table links |
 | `update_project()` | `main.py` | Updates a project after membership authorization | Inputs: project UUID, `ProjectIn`, database session, authenticated user; Output: updated `Project` or HTTP error | Modifies stored project and relationship data |

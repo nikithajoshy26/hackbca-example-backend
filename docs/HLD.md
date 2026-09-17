@@ -11,7 +11,7 @@
 
 - Provides a small FastAPI-based backend for HackBCA project and user management.
 - Exposes REST endpoints for project listing, retrieval, creation, update, deletion, user listing, and current-user lookup.
-- Uses Google OAuth to establish user identity, then issues an application login token stored in the database and returned via cookie or header.
+- Uses Google OAuth to establish user identity, then issues an application login token stored in the database, returned in a cookie, and accepted from either a cookie or header on later authenticated requests.
 - Persists application data with SQLAlchemy models backed by a relational database configured through `DATABASE_URL`.
 - Keeps architecture intentionally compact: routing, dependency wiring, and middleware are in `main.py`; persistence logic is in `crud.py`; schema definitions are in `schemas.py`; ORM entities are in `models.py`.
 
@@ -66,7 +66,7 @@ flowchart TB
 
 1. **Google sign-in**
    - Browser calls `GET /login/google`.
-   - Backend stores an optional redirect target in the server-side session and redirects to Google.
+   - Backend stores an optional redirect target in the session and redirects to Google.
    - Google returns to `GET /auth/google`.
    - Backend parses the Google ID token, upserts the user by Google subject, creates a login token record, and sets the token in a cookie before redirecting to the frontend URL.
 2. **Authenticated project creation**
