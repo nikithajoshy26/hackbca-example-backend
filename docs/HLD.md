@@ -154,6 +154,7 @@ flowchart TB
   - Session middleware uses `SESSION_SECRET`, which defaults to the literal string `secret` when the environment variable is unset.
   - Deployed environments should override the default `SESSION_SECRET` value because the checked-in fallback is not suitable for protecting production session integrity.
   - The application login token cookie is set in `main.py` without explicit `Secure`, `HttpOnly`, or `SameSite` arguments.
+  - Production deployments should set a strong `SESSION_SECRET` and add hardened cookie attributes for the application login token cookie because those protections are not fully expressed in the checked-in code.
   - Secret rotation and secret storage backend are not determined from repository.
 - **Dependency posture**
   - The repository imports FastAPI, SQLAlchemy, Authlib, Starlette, Pydantic, and python-dotenv, but no dependency manifest is checked in to pin versions.
