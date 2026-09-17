@@ -173,7 +173,7 @@ flowchart TB
 - Google identity claims originate from the backend's Google OAuth flow; the backend creates or reuses the user record and issues the application login token that the frontend later relies on.
 - Project creation requires an authenticated user, and project update or delete requires both authentication and project association checks in the backend.
 - Production deployments should require HTTPS for frontend-to-backend traffic to protect cookies and API requests.
-- The backend docs note that `SESSION_SECRET` defaults to a non-production fallback when unset and that hardened cookie attributes for the login token cookie are not expressed directly in the checked-in backend code.
+- Production deployments must provide a strong non-default `SESSION_SECRET` and must enforce hardened login-cookie settings, including `Secure`, `HttpOnly`, and an appropriate `SameSite` policy.
 - Server-side validation remains necessary because the frontend performs limited client-side validation and renders backend-supplied content.
 - Dependency audit posture, secret-rotation workflow, and multi-origin browser policy strategy are not determined from the component docs.
 

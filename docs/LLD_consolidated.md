@@ -6,6 +6,7 @@
 - Document type: Consolidated low-level design
 - Last updated: 2026-09-17
 - Doc owner: Not determined from component docs
+- Source scope: Consolidated from both component HLD and LLD inputs to describe cross-component low-level behavior
 - Component repos merged:
   - Frontend — `nikithajoshy26/hackbca-example-frontend` (`docs/HLD.md` last updated 2026-09-17; `docs/LLD.md` last updated 2026-09-17)
   - Backend — `nikithajoshy26/hackbca-example-backend` (`docs/HLD.md` last updated 2026-09-17; `docs/LLD.md` last updated 2026-09-17)
@@ -63,7 +64,7 @@
 | `auth_via_google()` | Backend | Processes the OAuth callback and establishes application login state | Inputs: request and database session; Output: redirect response | Creates users when absent, creates login-token rows, and sets the login cookie |
 | `create_project()` | Backend | Accepts authenticated project-creation requests | Inputs: validated project payload, database session, authenticated user; Output: persisted project | Persists project and project-user association rows |
 | `update_project()` | Backend | Updates a project after authorization checks | Inputs: project id, validated payload, database session, authenticated user; Output: updated project or HTTP error | Modifies project fields and membership associations |
-| `delete_project()` | Backend | Removes a project row | Inputs: database session and project id; Output: boolean | Deletes the project and commits the transaction |
+| `delete_project()` | Backend | Removes a project row in the CRUD layer | Inputs: database session and project id; Output: boolean success flag returned to the route layer | Deletes the project and commits the transaction |
 | `unpack_project()` | Backend | Resolves incoming project user ids into persistence-ready data | Inputs: database session, project payload, optional authenticated user; Output: ORM-ready field dictionary | Appends the authenticated user id when provided |
 | `create_token()` | Backend | Creates an application login token for a user | Inputs: database session and user id; Output: login-token id | Inserts and commits a login-token row |
 | `User`, `LoginToken`, `Project` | Backend | Represent persisted users, bearer tokens, and project records | Inputs: ORM construction fields; Output: ORM entities | Maintain project memberships and token ownership relationships |
