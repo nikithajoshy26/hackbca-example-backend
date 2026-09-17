@@ -110,7 +110,7 @@ flowchart TB
 - External identity dependency: Google OpenID Connect metadata endpoint and OAuth flow.
 - Migrations: Alembic is configured with online and offline modes and references `Base.metadata`.
 - Container packaging, infrastructure-as-code, and deployment manifests are not determined from repository.
-- CI/CD workflow definitions are not present in the checked-in repository tree.
+- No checked-in CI/CD workflow definitions were identified during the repository inventory used to generate this document.
 
 ## Deployment Strategy
 
@@ -157,7 +157,7 @@ flowchart TB
   - Production deployments should set a strong `SESSION_SECRET` and verify or explicitly configure hardened cookie attributes for the application login token cookie because those settings are not expressed directly in the checked-in code.
   - Secret rotation and secret storage backend are not determined from repository.
 - **Dependency posture**
-  - The repository imports FastAPI, SQLAlchemy, Authlib, Starlette, Pydantic, and python-dotenv, but no dependency manifest is checked in to pin versions.
+  - The repository imports FastAPI, SQLAlchemy, Authlib, Starlette, Pydantic, and python-dotenv, but no checked-in dependency manifest was identified during the repository inventory used to generate this document.
 - **Threat considerations evident from code**
   - Login tokens are bearer credentials stored in the database without an expiration field in the model.
   - CORS configuration is driven by `FRONTEND_URL`; multi-origin policy support is not determined from repository.
